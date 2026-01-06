@@ -1,11 +1,13 @@
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler, ContextTypes
 
+# --- Настройки ---
 TOKEN = "8569668451:AAEzn_ObGbnc-UeY-x2JJyn4t2y3V_-X_U"
 ADMIN_CHAT_ID = 687268108
 PHONE_LINK = "https://wa.me/79516382727"
 INSTAGRAM_LINK = "https://www.instagram.com/kavakids03?igsh=MTVlb2p0dzM5cDBwdA%3D%3D&utm_source=qr"
 
+# --- Меню ---
 def get_main_menu():
     return InlineKeyboardMarkup([
         [InlineKeyboardButton("Коляски", callback_data='menu_strollers')],
@@ -33,6 +35,7 @@ scales_menu = InlineKeyboardMarkup([
     [InlineKeyboardButton("⬅️ Главное меню", callback_data='back_main')]
 ])
 
+# --- Функции ---
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Выберите категорию или действие:", reply_markup=get_main_menu())
 
@@ -60,19 +63,27 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
         }
         price = price_map.get(product_name, "")
         product_text = f"{product_name} — {price}"
-        await context.bot.send_message(chat_id=ADMIN_CHAT_ID, text=f"🛒 Новый заказ
-От: @{user.username or user.first_name}
-Товар: {product_text}")
-        await query.edit_message_text(f"✅ Вы выбрали: {product_text}
-Менеджер свяжется с вами.", reply_markup=get_main_menu())
+
+        # Отправка админу
+        await context.bot.send_message(
+            chat_id=ADMIN_CHAT_ID,
+            text=f"🛒 Новый заказ\nОт: @{user.username or user.first_name}\nТовар: {product_text}"
+        )
+
+        # Ответ пользователю
+        await query.edit_message_text(
+            f"✅ Вы выбрали: {product_text}\nМенеджер свяжется с вами.",
+            reply_markup=get_main_menu()
+        )
     elif data == "back_main":
         await query.edit_message_text("Главное меню:", reply_markup=get_main_menu())
 
+# --- Основная логика ---
 def main():
     app = ApplicationBuilder().token(TOKEN).build()
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CallbackQueryHandler(button))
     app.run_polling()
 
-if __name__ == "__main__":
+if __name__== "__main__":
     main()
