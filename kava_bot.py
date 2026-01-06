@@ -2,7 +2,7 @@ from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler, ContextTypes
 
 # --- Настройки ---
-TOKEN = "8569668451:AAEzn_ObGbnc-UeY-x2JJyn4t2y3V_-X_U"
+TOKEN = "8569668451:AAEzn_ObGbnc-UeY-xd2JJyn4t2y3V_-X_U"
 ADMIN_CHAT_ID = 687268108
 PHONE_LINK = "https://wa.me/89516382727"
 INSTAGRAM_LINK = "https://www.instagram.com/kavakids03?igsh=MTVlb2p0dzM5cDBwdA%3D%3D&utm_source=qr"
