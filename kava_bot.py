@@ -4,7 +4,7 @@ from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandle
 # --- Настройки ---
 TOKEN = "8569668451:AAEzn_ObGbnc-UeY-x2JJyn4t2y3V_-X_U"
 ADMIN_CHAT_ID = 687268108
-PHONE_LINK = "https://wa.me/79516382727"
+PHONE_LINK = "https://wa.me/89516382727"
 INSTAGRAM_LINK = "https://www.instagram.com/kavakids03?igsh=MTVlb2p0dzM5cDBwdA%3D%3D&utm_source=qr"
 
 # --- Меню ---
@@ -85,5 +85,5 @@ def main():
     app.add_handler(CallbackQueryHandler(button))
     app.run_polling()
 
-if __name__== "__main__":
+if __name__ == "__main__":
     main()
